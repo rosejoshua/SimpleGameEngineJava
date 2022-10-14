@@ -86,4 +86,13 @@ class Model
             System.err.println(e.getMessage());
         }
     }
+
+    @Override
+    public String toString()
+    {
+        return "Model{" +
+                "pipesArrayList=" + pipesArrayList +
+                ", jsonFilename='" + jsonFilename + '\'' +
+                '}';
+    }
 }

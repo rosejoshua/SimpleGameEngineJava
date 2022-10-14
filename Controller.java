@@ -45,8 +45,8 @@ private boolean inEditMode;
 	public void update()
 	{
 		//boundary correction
-		if (view.getHorizScrollPos() < 0)
-			view.setHorizScrollPos(0);
+		if (view.getCameraXPos() < 0)
+			view.setCameraXPos(0);
 	}
 
 	//provide destination coordinates of mouse pointer location when clicked
@@ -54,7 +54,7 @@ private boolean inEditMode;
 	{
 		if (inEditMode)
 		{
-			model.addPipeAtCoordsOrDeleteIfExists(e.getX() + view.getHorizScrollPos(), e.getY(), view.getPipe_image().getWidth(), view.getPipe_image().getHeight());
+			model.addPipeAtCoordsOrDeleteIfExists(e.getX() + view.getCameraXPos(), e.getY(), view.getPipe_image().getWidth(), view.getPipe_image().getHeight());
 			if (e.getY() < 100)
 			{
 				System.out.println("break here");
@@ -129,5 +129,12 @@ private boolean inEditMode;
 	public boolean isKDown()
 	{
 		return kDown;
+	}
+
+	@Override
+	public String toString()
+	{
+		return "CONTROLLER: dDown: " + dDown + "fDown: " + fDown + ", jDown: " + jDown + " kDown: " + kDown + "isRunning: " +
+				isRunning + "inEditMode: " + inEditMode;
 	}
 }

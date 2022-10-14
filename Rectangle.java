@@ -6,9 +6,7 @@ public abstract class Rectangle
     private int width;
     private int height;
 
-    public Rectangle()
-    {
-    }
+    public Rectangle() {}
 
     public Rectangle(boolean solidBody, int xPos, int yPos, int width, int height)
     {
@@ -80,7 +78,6 @@ public abstract class Rectangle
 
             if (this.yPos < rectangle.getYPos())
             {
-                //change here
                 collisionPixels -= (this.height - (this.yPos + this.height - rectangle.getYPos()));
             }
 
@@ -136,5 +133,11 @@ public abstract class Rectangle
     public void setHeight(int height)
     {
         this.height = height;
+    }
+
+    @Override 
+    public String toString()
+    {
+        return "RECTANGLE: solidBody: " + solidBody + ", xPos: " + xPos + ", yPos: " + yPos + ", width: " + width + ", height: " + height;
     }
 }

@@ -53,4 +53,10 @@ public class PhysicsTracker
     {
         this.yVelocity = 0.0;
     }
+
+    @Override
+    public String toString()
+    {
+        return "PHYSICS_TRACKER: xVelocity: " + xVelocity + ", yVelocity: " + yVelocity;
+    }
 }

@@ -25,7 +25,6 @@ public class Mario extends Rectangle
     private boolean facingBackwards;
     private int lastDrawnFrame;
     private int groundPixelIndex;
-    private int cameraWidth;
     private int prevXPos;
     private int prevYPos;
     private int tempCollisionXPixels;
@@ -37,7 +36,6 @@ public class Mario extends Rectangle
         this.controller = controller;
         this.model = model;
         this.groundPixelIndex = resH-1;
-        this.cameraWidth = resW;
         sprites = new BufferedImage[numSprites];
         for (int i = 0; i < numSprites; i++)
         {
@@ -105,13 +103,13 @@ public class Mario extends Rectangle
 
         tempCollisionXPixels = 0;
         tempCollisionYPixels = 0;
-        //x axis collision check and correction here
+        //x-axis collision check and correction here
         for (Pipe pipe : model.getPipesArrayList())
         {
-            if (this.getCollisionPixelsYAxis(pipe) > 0 && this.getCollisionPixelsXAxis(pipe, view.getHorizScrollPos()) > 5)
+            if (this.getCollisionPixelsYAxis(pipe) > 0 && this.getCollisionPixelsXAxis(pipe, view.getCameraXPos()) > 5)
             {
-                if (this.getCollisionPixelsXAxis(pipe, view.getHorizScrollPos()) > tempCollisionXPixels)
-                    tempCollisionXPixels = this.getCollisionPixelsXAxis(pipe, view.getHorizScrollPos());
+                if (this.getCollisionPixelsXAxis(pipe, view.getCameraXPos()) > tempCollisionXPixels)
+                    tempCollisionXPixels = this.getCollisionPixelsXAxis(pipe, view.getCameraXPos());
                 if (this.getCollisionPixelsYAxis(pipe) > tempCollisionYPixels)
                     tempCollisionYPixels = this.getCollisionPixelsYAxis(pipe);
             }
@@ -141,10 +139,10 @@ public class Mario extends Rectangle
         //y axis collision check and correction here
         for (Pipe pipe : model.getPipesArrayList())
         {
-            if (this.getCollisionPixelsYAxis(pipe) > 0 && this.getCollisionPixelsXAxis(pipe, view.getHorizScrollPos()) > 5)
+            if (this.getCollisionPixelsYAxis(pipe) > 0 && this.getCollisionPixelsXAxis(pipe, view.getCameraXPos()) > 5)
             {
-                if (this.getCollisionPixelsXAxis(pipe, view.getHorizScrollPos()) > tempCollisionXPixels)
-                    tempCollisionXPixels = this.getCollisionPixelsXAxis(pipe, view.getHorizScrollPos());
+                if (this.getCollisionPixelsXAxis(pipe, view.getCameraXPos()) > tempCollisionXPixels)
+                    tempCollisionXPixels = this.getCollisionPixelsXAxis(pipe, view.getCameraXPos());
                 if (this.getCollisionPixelsYAxis(pipe) > tempCollisionYPixels)
                     tempCollisionYPixels = this.getCollisionPixelsYAxis(pipe);
             }
@@ -202,5 +200,13 @@ public class Mario extends Rectangle
     public void setView(View view)
     {
         this.view = view;
+    }
+
+    @Override 
+    public String toString()
+    {
+        return "MARIO: canJump: " + canJump + ", facingBackwards: " + facingBackwards + ", lastDrawFrame: " + lastDrawnFrame + 
+        ", groundPixelIndex: " + groundPixelIndex + ", prevXPos: " + prevXPos + ", prevYPos: " + prevYPos + 
+        ", tempCollisionXPixels: " + tempCollisionXPixels + ", tempCollisionYPixels: " + tempCollisionYPixels;
     }
 }

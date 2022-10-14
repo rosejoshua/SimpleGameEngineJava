@@ -65,6 +65,17 @@ public class Game extends JFrame
 		System.exit(0);
 	}
 
+	@Override
+	public String toString()
+	{
+		return "Game{" +
+				"model=" + model +
+				", controller=" + controller +
+				", view=" + view +
+				", mario=" + mario +
+				'}';
+	}
+
 	public static void main(String[] args) throws IOException
 	{
 		Game game = new Game();

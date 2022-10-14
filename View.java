@@ -18,7 +18,7 @@ class View extends JPanel
 	private Model model;
 
 	private Mario mario;
-	private int horizScrollPos = 0;
+	private int cameraXPos = 0;
 	private int groundOffset;
 	private int marioAmountOffCenter;
 
@@ -49,18 +49,18 @@ class View extends JPanel
 		marioAmountOffCenter = (mario.getXPos() + mario.getWidth()/2) - (this.getWidth()/2);
 		if (marioAmountOffCenter > 0)
 		{
-			horizScrollPos += marioAmountOffCenter;
+			cameraXPos += marioAmountOffCenter;
 			mario.setXPos(mario.getXPos() - marioAmountOffCenter);
 		}
-		else if (marioAmountOffCenter < 0 && horizScrollPos > 0)
+		else if (marioAmountOffCenter < 0 && cameraXPos > 0)
 		{
-			horizScrollPos += marioAmountOffCenter;
+			cameraXPos += marioAmountOffCenter;
 			mario.setXPos(mario.getXPos() + -marioAmountOffCenter);
 		}
 		for (Pipe p : model.getPipesArrayList())
 		{
 
-			graphics.drawImage(this.pipe_image, p.getXPos() - horizScrollPos, p.getYPos(), null);
+			graphics.drawImage(this.pipe_image, p.getXPos() - cameraXPos, p.getYPos(), null);
 		}
 		if (mario.getXVelocity() >= 0.0 && (!mario.isFacingBackwards()))
 			graphics.drawImage(mario.getSprite(), mario.getXPos(), mario.getYPos(), null);
@@ -78,13 +78,20 @@ class View extends JPanel
 		return model;
 	}
 
-	public int getHorizScrollPos()
+	public int getCameraXPos()
 	{
-		return horizScrollPos;
+		return cameraXPos;
 	}
 
-	public void setHorizScrollPos(int horizScrollPos)
+	public void setCameraXPos(int cameraXPos)
 	{
-		this.horizScrollPos = horizScrollPos;
+		this.cameraXPos = cameraXPos;
+	}
+
+	@Override 
+	public String toString()
+	{
+		return "VIEW: cameraXPos: " + cameraXPos + ", groundOffset: " +
+				groundOffset + ", marioAmountOffCenter: " + marioAmountOffCenter;
 	}
 }

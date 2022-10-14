@@ -4,6 +4,8 @@
 // also contains methods for creating respective Json versions of each object for saving,
 // as well as the converse operation of creating a Pipe object from Json version for loading
 
+import java.util.Iterator;
+
 public class Pipe extends Rectangle
 {
     private int xPos;
@@ -38,4 +40,14 @@ public class Pipe extends Rectangle
     {
         return yPos;
     }
+
+    @Override
+    public String toString()
+    {
+        return "Pipe{" +
+                "yPos=" + yPos +
+                ", solidBody=" + solidBody +
+                '}';
+    }
+
 }
